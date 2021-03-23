@@ -1,0 +1,17 @@
+APITest
+
+APITest was developed in IntelliJ Community Version 2020.3.3.
+
+APITest is a simple Automation framework that automates 2 API from http://deckofcardsapi.com/.  The
+framework is broken down into 3 components:  common, code, and tests.  In the common folder, you will
+find a very simple API Client that implements the GET and POST method.  Also in the common folder, you
+will find a WebService class that extends the simple API Client to show case OOP inheritance.
+
+In the model folder, you will find classes that model the response calls for the APIs.  Since we are
+only calling 2 APIs, I only modeled 3 objects: New Deck Response, Draw Card Response, and the Cards model.
+We use Gson to serialize the API responses into their respected Model.
+
+In the test folder, you will find one test case for each API.  To run the test, please load it through
+IntellI by selecting New Project, and selecting the folder that contains the APITest.iml file.  Once
+the project is loaded, you can expand to APITest/src/test/java location.  You can right click on the
+"DeckOfCardUnitTest" class and select "Run 'DeckOfCardUnitTest'" from the sub menu to run the tests.
