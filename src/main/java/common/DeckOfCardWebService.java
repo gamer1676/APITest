@@ -18,6 +18,10 @@ public class DeckOfCardWebService extends TestAPIClient {
 
     public DeckOfCardWebService() { }
 
+    public String GetNewDeck() {
+        return GET("https://deckofcardsapi.com/api/deck/new/");
+    }
+
     /*
      Calls the 'new deck' API
      */

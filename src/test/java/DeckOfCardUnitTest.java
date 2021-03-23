@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 public class DeckOfCardUnitTest {
     final int JOKERDECK = 54;
+    final int REGULARDECK = 52;
 
     DeckOfCardWebService webService = null;
     Gson gson = null;
@@ -17,6 +18,29 @@ public class DeckOfCardUnitTest {
         // initialize all the common test objects when we load the tests so they are in clean state
         webService =  new DeckOfCardWebService();
         gson = new Gson();
+    }
+
+    /*
+     Atomic test to get a new deck of card (No Jokers)
+     */
+    @Test
+    public void ValidateNewDeck() {
+        // call API
+        String result = webService.GetNewDeck();
+
+        // assert that call was successful (ideally this should be handled by framework exceptions)
+        Assert.assertNotEquals(result, "", "There was an exception during NewDeck API call");
+
+        // serialize result into NewDeckModel
+        ApiNewDeckModel apiResult = gson.fromJson(result, ApiNewDeckModel.class);
+
+        // assert values of a joker deck
+        Assert.assertEquals(apiResult.success, true,
+                "API call was not successfull");
+        Assert.assertEquals(apiResult.remaining, REGULARDECK,
+                "Deck doesn't have [" + REGULARDECK + "] cards");   // 54 because of 2 jokers
+        Assert.assertEquals(apiResult.shuffled, false,
+                "Deck should not be shuffled");
     }
 
     /*
